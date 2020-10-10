@@ -2,7 +2,7 @@
 #include <tesla.hpp>    // The Tesla Header
 #include <inttypes.h>
 
-///*Notes
+///*Notes BatteryTempMode
 //	x == temperature
 //	  temp range: state  voltage max           	current unknown
 //	     x >= 60: 4      unk0 == 2 ? 4208 : 3952,   2048,   0
