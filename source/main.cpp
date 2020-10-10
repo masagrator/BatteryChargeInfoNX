@@ -2,6 +2,18 @@
 #include <tesla.hpp>    // The Tesla Header
 #include <inttypes.h>
 
+///*Notes
+//	x == temperature
+//	  temp range: state  voltage max           	current unknown
+//	     x >= 60: 4      unk0 == 2 ? 4208 : 3952,   2048,   0
+//	51 >= x < 60: 3      unk0 == 2 ? 4208 : 3952,   2048,   unk0 != 2 ? 1 : 0
+//	17 >= x < 51: 2      4208,                      2048,   1
+//	4  >= x < 17: 1      4208,                      768,    1
+//	      x <  4: 0      4208,                      768,    0
+///End of Notes
+
+if unk0 == 0 then current is set to 512.
+
 typedef enum {
 	Undocked	=	BIT(0),
 	Charging	=	BIT(2),
@@ -34,7 +46,7 @@ typedef struct {
 	int32_t ChargeVoltageLimit; //Charge voltage limit in mV
 	int32_t unk_x10; //Possibly an emum
 	int32_t unk_x14; //Possibly a set a flags
-	int32_t unk_x18; // Temp/Charge limit state
+	int32_t BatteryTempMode; // Battery Temperature state (more in Notes)
 	int32_t BatteryTemperature; //Battery temperature in milli C
 	int32_t RawBatteryCharge; //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
 	int32_t VoltageNow; //Voltage now in mV
