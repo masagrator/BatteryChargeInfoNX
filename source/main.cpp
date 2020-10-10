@@ -16,7 +16,7 @@
 
 typedef enum {
 	Undocked	=	BIT(0),
-	Charging	=	BIT(2),
+	Charging	=	BIT(8),
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
