@@ -10,9 +10,9 @@
 //	17 >= x < 51: 2      4208,                      2048,   1
 //	4  >= x < 17: 1      4208,                      768,    1
 //	      x <  4: 0      4208,                      768,    0
+//
+//	if unk0 == 0 then current is set to 512.
 ///End of Notes
-
-if unk0 == 0 then current is set to 512.
 
 typedef enum {
 	Undocked	=	BIT(0),
