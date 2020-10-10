@@ -8,14 +8,14 @@ typedef enum {
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
-	None			=	0,
-	PD				=	1,
+	None		=	0,
+	PD		=	1,
 	TypeC_1500mA	=	2,
 	TypeC_3000mA	=	3,
-	DCP				=	4,
-	CDP				=	5,
-	SDP				=	6,
-	Apple_500mA		=	7,
+	DCP		=	4,
+	CDP		=	5,
+	SDP		=	6,
+	Apple_500mA	=	7,
 	Apple_1000mA	=	8,
 	Apple_2000mA	=	9,
 	
