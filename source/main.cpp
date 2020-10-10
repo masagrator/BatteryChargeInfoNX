@@ -31,9 +31,9 @@ typedef struct {
 //			1: official charger (Input current limit: 1200 mA, Charger Voltage Limit: 15000 mV, Charger Current Limit: 2600 mA)	
 //			2: ?	
 //			3: ?	
-//			4: Unofficial charger (Input current limit: 1500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 1500 mA)	
+//			4: Unofficial charger with QC (Input current limit: 1500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 1500 mA)	
 //			5: ?	
-//			6: USB (Input current limit: 500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 500 mA)	
+//			6: USB (Input current limit: 500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 500 mA) + Unofficial charger without QC (Output: 5V/1.55A, Input current limit: 100 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 100 mA)
 //	
 ///
 
