@@ -17,6 +17,7 @@
 typedef enum {
 	Undocked	=	BIT(0),
 	Charging	=	BIT(8),
+	OTG		=	BIT(12)
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
@@ -41,7 +42,7 @@ typedef enum {
 
 typedef struct {
 	int32_t InputCurrentLimit; //Input current limit in mA
-	int32_t unk_x04; //Possibly a limit in mA
+	int32_t unk_x04; //OTG current limit in mA(?)
 	int32_t FastChargeCurrentLimit; //Charging current limit in mA
 	int32_t ChargeVoltageLimit; //Charge voltage limit in mV
 	int32_t unk_x10; //Possibly an emum
