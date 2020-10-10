@@ -35,6 +35,7 @@ typedef struct {
 //			5: ?
 //			6: USB (Charge current limit: 500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 500 mA)
 //
+///
 
 Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoFields *out) {
 	return serviceDispatchOut(psmService, 17, *out);
