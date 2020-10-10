@@ -28,12 +28,12 @@ typedef struct {
 
 ///*Notes	
 //	unk_x30:	0: not charging	
-//			1: official charger (Charge current limit: 1200 mA, Charger Voltage Limit: 15000 mV, Charger Current Limit: 2600 mA)	
+//			1: official charger (Input current limit: 1200 mA, Charger Voltage Limit: 15000 mV, Charger Current Limit: 2600 mA)	
 //			2: ?	
 //			3: ?	
-//			4: Unofficial charger (Charge current limit: 1500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 1500 mA)	
+//			4: Unofficial charger (Input current limit: 1500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 1500 mA)	
 //			5: ?	
-//			6: USB (Charge current limit: 500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 500 mA)	
+//			6: USB (Input current limit: 500 mA, Charger Voltage Limit: 5000 mV, Charger Current Limit: 500 mA)	
 //	
 ///
 
