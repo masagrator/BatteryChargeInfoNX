@@ -8,22 +8,22 @@ typedef enum {
 } BatteryChargeInfoFieldsFlags;
 
 typedef struct {
-	int32_t BatteryChargeInfoFields_ChargeCurrentLimit; //Charge current limit in mA
-	int32_t BatteryChargeInfoFields_InputCurrentLimit; //Input current limit in mA
-	int32_t BatteryChargeInfoFields_FastChargeCurrentLimit; //Fast charge current limit in mA
-	int32_t BatteryChargeInfoFields_ChargeVoltageLimit; //Charge voltage limit in mV
+	int32_t ChargeCurrentLimit; //Charge current limit in mA
+	int32_t InputCurrentLimit; //Input current limit in mA
+	int32_t FastChargeCurrentLimit; //Fast charge current limit in mA
+	int32_t ChargeVoltageLimit; //Charge voltage limit in mV
 	int32_t unk_x10; //Possibly an emum
 	int32_t unk_x14; //Possibly a set a flags
 	int32_t unk_x18; //Possibly an enum
 	int32_t unk_x1c; //Unknown, it's systematically getting higher. Possible battery timer.
-	int32_t BatteryChargeInfoFields_RawBatteryCharge; //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
-	int32_t BatteryChargeInfoFields_VoltageNow; //Voltage now in mV
-	int32_t BatteryChargeInfoFields_BatteryAge; //Battery age per cent-mille (i.e. 100% = 100000 pcm)
-	int32_t BatteryChargeInfoFields_ChargingEnabled; //Sets to 1 when it charges
+	int32_t RawBatteryCharge; //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+	int32_t VoltageNow; //Voltage now in mV
+	int32_t BatteryAge; //Battery age per cent-mille (i.e. 100% = 100000 pcm)
+	int32_t ChargingEnabled; //Sets to 1 when it charges
 	int32_t unk_x30; //Possibly an enum related to charging
-	int32_t BatteryChargeInfoFields_ChargerVoltageLimit; //Charger voltage limit in mV
-	int32_t BatteryChargeInfoFields_ChargerCurrentLimit; //Charger current limit in mA
-	BatteryChargeInfoFieldsFlags BatteryChargeInfoFields_Flags; //	Possibly a set a flags (potentially 0x100 for charging, 0x1 for undocked)
+	int32_t ChargerVoltageLimit; //Charger voltage limit in mV
+	int32_t ChargerCurrentLimit; //Charger current limit in mA
+	BatteryChargeInfoFieldsFlags Flags; //	Possibly a set a flags (potentially 0x100 for charging, 0x1 for undocked)
 } BatteryChargeInfoFields;
 
 Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoFields *out) {
@@ -40,7 +40,7 @@ void GetBatteryLoop(void*) {
 	_batteryChargeInfoFields = new BatteryChargeInfoFields;
 	while (threadexit == false) {
 		psmGetBatteryChargeInfoFields(psmService, _batteryChargeInfoFields);
-		snprintf(Print_x, sizeof(Print_x), "Charge current limit: %u mA" "\nInput current limit: %u mA" "\nFast charge current limit: %u mA" "\nCharge voltage limit: %u mV" "\nunk_x10: 0x%08" PRIx32 "\nunk_x14: 0x%08" PRIx32 "\nunk_x18: 0x%08" PRIx32 "\nunk_x1c: 0x%08" PRIx32 "\nBattery Charge: %3.4f%s" "\nVoltage now: %u mV" "\nBattery Age: %3.4f%s" "\nunk_x2c: %u" "\nunk_x30: %u" "\nCharger Voltage Limit: %u mV" "\nCharger Current Limit: %u mA" "\nunk_x3c: 0x%08" PRIx32, _batteryChargeInfoFields->BatteryChargeInfoFields_ChargeCurrentLimit, _batteryChargeInfoFields->BatteryChargeInfoFields_InputCurrentLimit, _batteryChargeInfoFields->BatteryChargeInfoFields_FastChargeCurrentLimit, _batteryChargeInfoFields->BatteryChargeInfoFields_ChargeVoltageLimit, _batteryChargeInfoFields->unk_x10, _batteryChargeInfoFields->unk_x14, _batteryChargeInfoFields->unk_x18, _batteryChargeInfoFields->unk_x1c, (float)_batteryChargeInfoFields->BatteryChargeInfoFields_RawBatteryCharge / 1000, "%", _batteryChargeInfoFields->BatteryChargeInfoFields_VoltageNow, (float)_batteryChargeInfoFields->BatteryChargeInfoFields_BatteryAge / 1000, "%", _batteryChargeInfoFields->BatteryChargeInfoFields_ChargingEnabled, _batteryChargeInfoFields->unk_x30, _batteryChargeInfoFields->BatteryChargeInfoFields_ChargerVoltageLimit, _batteryChargeInfoFields->BatteryChargeInfoFields_ChargerCurrentLimit, (int32_t)_batteryChargeInfoFields->BatteryChargeInfoFields_Flags);
+		snprintf(Print_x, sizeof(Print_x), "Charge current limit: %u mA" "\nInput current limit: %u mA" "\nFast charge current limit: %u mA" "\nCharge voltage limit: %u mV" "\nunk_x10: 0x%08" PRIx32 "\nunk_x14: 0x%08" PRIx32 "\nunk_x18: 0x%08" PRIx32 "\nunk_x1c: 0x%08" PRIx32 "\nBattery Charge: %3.4f%s" "\nVoltage now: %u mV" "\nBattery Age: %3.4f%s" "\nunk_x2c: %u" "\nunk_x30: %u" "\nCharger Voltage Limit: %u mV" "\nCharger Current Limit: %u mA" "\nunk_x3c: 0x%08" PRIx32, _batteryChargeInfoFields->ChargeCurrentLimit, _batteryChargeInfoFields->InputCurrentLimit, _batteryChargeInfoFields->FastChargeCurrentLimit, _batteryChargeInfoFields->ChargeVoltageLimit, _batteryChargeInfoFields->unk_x10, _batteryChargeInfoFields->unk_x14, _batteryChargeInfoFields->unk_x18, _batteryChargeInfoFields->unk_x1c, (float)_batteryChargeInfoFields->RawBatteryCharge / 1000, "%", _batteryChargeInfoFields->VoltageNow, (float)_batteryChargeInfoFields->BatteryAge / 1000, "%", _batteryChargeInfoFields->ChargingEnabled, _batteryChargeInfoFields->unk_x30, _batteryChargeInfoFields->ChargerVoltageLimit, _batteryChargeInfoFields->ChargerCurrentLimit, (int32_t)_batteryChargeInfoFields->Flags);
 		svcSleepThread(33'333'333);
 	}
 	delete[] _batteryChargeInfoFields;
