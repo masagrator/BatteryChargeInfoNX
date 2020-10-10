@@ -40,7 +40,7 @@ typedef enum {
 } BatteryChargeInfoFieldsPowerRole;
 
 typedef struct {
-	int32_t InputCurrentLimit; //Charge current limit in mA
+	int32_t InputCurrentLimit; //Input current limit in mA
 	int32_t unk_x04; //Possibly a limit in mA
 	int32_t FastChargeCurrentLimit; //Charging current limit in mA
 	int32_t ChargeVoltageLimit; //Charge voltage limit in mV
