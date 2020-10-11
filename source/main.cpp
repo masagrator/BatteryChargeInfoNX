@@ -54,8 +54,8 @@ typedef struct {
     int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
-    int32_t ChargerVoltageLimit;                        //Charger voltage limit in mV
-    int32_t ChargerCurrentLimit;                        //Charger current limit in mA
+    int32_t DeviceVoltageLimit;                         //Charger and external device voltage limit in mV
+    int32_t DeviceCurrentLimit;                         //Charger and external device current limit in mA
     BatteryChargeInfoFieldsFlags Flags;                 //Unknown flags
 } BatteryChargeInfoFields;
 
@@ -87,8 +87,8 @@ void GetBatteryLoop(void*) {
             "\nBattery Age: %.1f%s" 
             "\nPower Role: %u" 
             "\nCharger Type: %u" 
-            "\nCharger Voltage Limit: %u mV" 
-            "\nCharger Current Limit: %u mA" 
+            "\nDevice Voltage Limit: %u mV" 
+            "\nDevice Current Limit: %u mA" 
             "\nunk_x3c: 0x%08" PRIx32, 
             _batteryChargeInfoFields->InputCurrentLimit, 
             _batteryChargeInfoFields->VBUSCurrentLimit,
