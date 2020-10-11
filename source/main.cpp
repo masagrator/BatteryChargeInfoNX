@@ -43,8 +43,8 @@ typedef enum {
 
 typedef struct {
 	int32_t InputCurrentLimit; //Input current limit in mA
-	int32_t unk_x04; //OTG current limit in mA(?)
-	int32_t FastChargeCurrentLimit; //Charging current limit in mA
+	int32_t OutputCurrentLimit; //USB output current limit in mA
+	int32_t ChargeCurrentLimit; //Charging current limit in mA
 	int32_t ChargeVoltageLimit; //Charge voltage limit in mV
 	int32_t unk_x10; //Possibly an emum
 	int32_t unk_x14; //Possibly a set a flags
