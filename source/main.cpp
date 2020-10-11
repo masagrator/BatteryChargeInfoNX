@@ -17,7 +17,7 @@
 typedef enum {
     Undocked        =    BIT(0),
     unk_bit8        =    BIT(8),
-    OTG             =    BIT(12),
+    SPDSRC          =    BIT(12),
     USBheadphones   =    BIT(16)
 } BatteryChargeInfoFieldsFlags;
 
