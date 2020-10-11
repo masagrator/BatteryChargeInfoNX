@@ -32,7 +32,6 @@ typedef enum {
     Apple_500mA     =    7,
     Apple_1000mA    =    8,
     Apple_2000mA    =    9
-    
 } BatteryChargeInfoFieldsChargerType;
 
 typedef enum {
@@ -42,22 +41,22 @@ typedef enum {
 } BatteryChargeInfoFieldsPowerRole;
 
 typedef struct {
-    int32_t InputCurrentLimit; //Input current limit in mA
-    int32_t OutputCurrentLimit; //USB output current limit in mA
-    int32_t ChargeCurrentLimit; //Charging current limit in mA
-    int32_t ChargeVoltageLimit; //Charge voltage limit in mV
-    int32_t unk_x10; //Possibly an emum
-    int32_t unk_x14; //Possibly a set a flags
-    int32_t BatteryTempMode; // Battery Temperature State (more in Notes)
-    int32_t BatteryTemperature; //Battery temperature in milli C
-    int32_t RawBatteryCharge; //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
-    int32_t VoltageNow; //Voltage now in mV
-    int32_t BatteryAge; //Battery age per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t InputCurrentLimit;                          //Input current limit in mA
+    int32_t VBUSCurrentLimit;                           //VBUS current limit in mA
+    int32_t ChargeCurrentLimit;                         //Charging current limit in mA
+    int32_t ChargeVoltageLimit;                         //Charge voltage limit in mV
+    int32_t unk_x10;                                    //Possibly an emum
+    int32_t unk_x14;                                    //Possibly a set a flags
+    int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
+    int32_t BatteryTemperature;                         //Battery temperature in milli C
+    int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t VoltageNow;                                 //Voltage now in mV
+    int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
-    int32_t ChargerVoltageLimit; //Charger voltage limit in mV
-    int32_t ChargerCurrentLimit; //Charger current limit in mA
-    BatteryChargeInfoFieldsFlags Flags; //    Possibly a set a flags (potentially 0x100 for charging, 0x1 for undocked)
+    int32_t ChargerVoltageLimit;                        //Charger voltage limit in mV
+    int32_t ChargerCurrentLimit;                        //Charger current limit in mA
+    BatteryChargeInfoFieldsFlags Flags;                 //Possibly a set a flags (potentially 0x100 for charging, 0x1 for undocked)
 } BatteryChargeInfoFields;
 
 Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoFields *out) {
@@ -76,7 +75,7 @@ void GetBatteryLoop(void*) {
         psmGetBatteryChargeInfoFields(psmService, _batteryChargeInfoFields);
         snprintf(Print_x, sizeof(Print_x), 
             "Input current limit: %u mA"
-            "\nOutput current Limit: %u mA" 
+            "\nVBUS current Limit: %u mA" 
             "\nCharge current limit: %u mA" 
             "\nCharge voltage limit: %u mV" 
             "\nunk_x10: 0x%08" PRIx32 
@@ -92,8 +91,8 @@ void GetBatteryLoop(void*) {
             "\nCharger Current Limit: %u mA" 
             "\nunk_x3c: 0x%08" PRIx32, 
             _batteryChargeInfoFields->InputCurrentLimit, 
-            _batteryChargeInfoFields->OutputCurrentLimit,
-            _batteryChargeInfoFields->FastChargeCurrentLimit,
+            _batteryChargeInfoFields->VBUSCurrentLimit,
+            _batteryChargeInfoFields->ChargeCurrentLimit,
             _batteryChargeInfoFields->ChargeVoltageLimit, 
             _batteryChargeInfoFields->unk_x10,
             _batteryChargeInfoFields->unk_x14, 
