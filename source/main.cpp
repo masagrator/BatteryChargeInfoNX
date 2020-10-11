@@ -107,7 +107,7 @@ void GetBatteryLoop(void*) {
             _batteryChargeInfoFields->ChargerCurrentLimit,
             (int32_t)_batteryChargeInfoFields->Flags
         );
-        svcSleepThread(33'333'333);
+        svcSleepThread(16'000'000);
     }
     delete _batteryChargeInfoFields;
 }
