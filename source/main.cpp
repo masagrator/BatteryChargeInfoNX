@@ -45,8 +45,8 @@ typedef struct {
     int32_t VBUSCurrentLimit;                           //VBUS current limit in mA
     int32_t ChargeCurrentLimit;                         //Charge current limit in mA
     int32_t ChargeVoltageLimit;                         //Charge voltage limit in mV
-    int32_t unk_x10;                                    //Possibly an emum
-    int32_t unk_x14;                                    //Possibly a set a flags
+    int32_t unk_x10;                                    //Possibly an emum, getting the same value as PowerRole in all tested cases
+    int32_t unk_x14;                                    //Possibly flags
     int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
     int32_t BatteryTemperature;                         //Battery temperature in milli C
     int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
@@ -56,7 +56,7 @@ typedef struct {
     BatteryChargeInfoFieldsChargerType ChargerType;
     int32_t ChargerVoltageLimit;                        //Charger voltage limit in mV
     int32_t ChargerCurrentLimit;                        //Charger current limit in mA
-    BatteryChargeInfoFieldsFlags Flags;                 //Possibly a set a flags (potentially 0x100 for charging, 0x1 for undocked)
+    BatteryChargeInfoFieldsFlags Flags;                 //Possibly flags
 } BatteryChargeInfoFields;
 
 Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoFields *out) {
