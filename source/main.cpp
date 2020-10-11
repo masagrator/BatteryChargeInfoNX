@@ -15,10 +15,10 @@
 ///End of Notes
 
 typedef enum {
-    Undocked        =    BIT(0),
-    unk_bit8        =    BIT(8),
+    Handheld        =    BIT(0),
+    unk_bit8        =    BIT(8),  //it can activate when charger is plugged or when joy-con is pushed to rail, but not recognized by system yet
     SPDSRC          =    BIT(12),
-    USBheadphones   =    BIT(16)
+    ExternalDevice  =    BIT(16)
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
