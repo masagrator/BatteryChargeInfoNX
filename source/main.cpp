@@ -74,16 +74,16 @@ void GetBatteryLoop(void*) {
     while (threadexit == false) {
         psmGetBatteryChargeInfoFields(psmService, _batteryChargeInfoFields);
         snprintf(Print_x, sizeof(Print_x), 
-            "Input current limit: %u mA"
-            "\nVBUS current Limit: %u mA" 
-            "\nCharge current limit: %u mA" 
-            "\nCharge voltage limit: %u mV" 
+            "Input Current Limit: %u mA"
+            "\nVBUS Current Limit: %u mA" 
+            "\nCharge Current Limit: %u mA" 
+            "\nCharge Voltage Limit: %u mV" 
             "\nunk_x10: 0x%08" PRIx32 
             "\nunk_x14: 0x%08" PRIx32 
             "\nBattery Temperature State: %u" 
             "\nBattery Temperature: %.1f\u00B0C" 
-            "\nBattery Charge: %.1f%s" 
-            "\nVoltage now: %u mV" 
+            "\nRaw Battery Charge: %.1f%s" 
+            "\nVoltage Now: %u mV" 
             "\nBattery Age: %.1f%s" 
             "\nPower Role: %u" 
             "\nCharger Type: %u" 
