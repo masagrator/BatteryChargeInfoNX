@@ -5,7 +5,7 @@
 ///*Notes BatteryTempMode
 //
 //    x == temperature
-//      temp range: state  voltage max               current  Enable Charging (?)
+//      temp range: state  voltage max               current  unk1
 //         x >= 60: 4      unk0 == 2 4208 : 3952,    2048,    0
 //    51 >= x < 60: 3      unk0 == 2 4208 : 3952,    2048,    unk0 != 2 1 : 0
 //    17 >= x < 51: 2      4208,                     2048,    1
