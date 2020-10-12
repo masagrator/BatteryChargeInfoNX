@@ -5,7 +5,7 @@
 ///*Notes BatteryTempMode
 //
 //    x == temperature
-//      temp range: state  voltage max               current unknown
+//      temp range: state  voltage max               current  unk1
 //         x >= 60: 4      unk0 == 2 ? 4208 : 3952,   2048,   0
 //    51 >= x < 60: 3      unk0 == 2 ? 4208 : 3952,   2048,   unk0 != 2 ? 1 : 0
 //    17 >= x < 51: 2      4208,                      2048,   1
@@ -13,6 +13,7 @@
 //          x <  4: 0      4208,                      768,    0
 //
 //    if unk0 == 0 then current is set to 512.
+//    unk1 is probably "Enable charging"
 //
 ///* Notes VoltageAvg
 //
