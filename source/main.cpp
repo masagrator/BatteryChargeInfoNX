@@ -57,7 +57,7 @@ typedef struct {
     int32_t unk_x14;                                    //Possibly flags
     int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
     int32_t BatteryTemperature;                         //Battery temperature in milli C
-    int32_t RawBatteryCapacity;                         //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
     int32_t VoltageAvg;                                 //Voltage avg in mV (more in Notes)
     int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
@@ -90,7 +90,7 @@ void GetBatteryLoop(void*) {
             "\nunk_x14: 0x%08" PRIx32 
             "\nBattery Temperature State: %u" 
             "\nBattery Temperature: %.1f\u00B0C" 
-            "\nRaw Battery Capacity: %.1f%s" 
+            "\nRaw Battery Charge: %.1f%s" 
             "\nVoltage Avg: %u mV" 
             "\nBattery Age: %.1f%s" 
             "\nPower Role: %u" 
@@ -106,7 +106,7 @@ void GetBatteryLoop(void*) {
             _batteryChargeInfoFields->unk_x14, 
             _batteryChargeInfoFields->BatteryTempMode, 
             (float)_batteryChargeInfoFields->BatteryTemperature / 1000, 
-            (float)_batteryChargeInfoFields->RawBatteryCapacity / 1000, "%",
+            (float)_batteryChargeInfoFields->RawBatteryCharge / 1000, "%",
             _batteryChargeInfoFields->VoltageAvg,
             (float)_batteryChargeInfoFields->BatteryAge / 1000, "%",
             _batteryChargeInfoFields->PowerRole,
