@@ -13,7 +13,7 @@
 //          x <  4: 0      4208,                     768,     0
 //
 //    if unk0 == 0 then current is set to 512.
-//    Guess for unk0: 0 - Docked, 1 - Handheld, 2 - Sleep
+//    Guess for unk0: 0 - Docked, 1 - Handheld, 2 - Sleep/Mariko
 //    unk1 is probably "Enable charging"
 //
 ///* Notes VoltageAvg
@@ -51,19 +51,19 @@ typedef enum {
 typedef struct {
     int32_t InputCurrentLimit;                          //Input current limit in mA
     int32_t VBUSCurrentLimit;                           //VBUS current limit in mA
-    int32_t ChargeCurrentLimit;                         //Charge current limit in mA
-    int32_t ChargeVoltageLimit;                         //Charge voltage limit in mV
+    int32_t ChargeCurrentLimit;                         //Battery Charging current limit in mA
+    int32_t ChargeVoltageLimit;                         //Battery Charging voltage limit in mV
     int32_t unk_x10;                                    //Possibly an emum, getting the same value as PowerRole in all tested cases
     int32_t unk_x14;                                    //Possibly flags
     int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
     int32_t BatteryTemperature;                         //Battery temperature in milli C
-    int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t RawBatteryCapacity;                         //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
     int32_t VoltageAvg;                                 //Voltage avg in mV (more in Notes)
     int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
-    int32_t ChargerVoltageLimit;                         //Charger and external device voltage limit in mV
-    int32_t ChargerCurrentLimit;                         //Charger and external device current limit in mA
+    int32_t ChargerVoltageLimit;                        //Charger and external device voltage limit in mV
+    int32_t ChargerCurrentLimit;                        //Charger and external device current limit in mA
     BatteryChargeInfoFieldsFlags Flags;                 //Unknown flags
 } BatteryChargeInfoFields;
 
@@ -84,13 +84,13 @@ void GetBatteryLoop(void*) {
         snprintf(Print_x, sizeof(Print_x), 
             "Input Current Limit: %u mA"
             "\nVBUS Current Limit: %u mA" 
-            "\nCharge Current Limit: %u mA" 
-            "\nCharge Voltage Limit: %u mV" 
+            "\nBattery Charging Current Limit: %u mA" 
+            "\nBattery Charging Voltage Limit: %u mV" 
             "\nunk_x10: 0x%08" PRIx32 
             "\nunk_x14: 0x%08" PRIx32 
             "\nBattery Temperature State: %u" 
             "\nBattery Temperature: %.1f\u00B0C" 
-            "\nRaw Battery Charge: %.1f%s" 
+            "\nRaw Battery Capacity: %.1f%s" 
             "\nVoltage Avg: %u mV" 
             "\nBattery Age: %.1f%s" 
             "\nPower Role: %u" 
@@ -106,7 +106,7 @@ void GetBatteryLoop(void*) {
             _batteryChargeInfoFields->unk_x14, 
             _batteryChargeInfoFields->BatteryTempMode, 
             (float)_batteryChargeInfoFields->BatteryTemperature / 1000, 
-            (float)_batteryChargeInfoFields->RawBatteryCharge / 1000, "%",
+            (float)_batteryChargeInfoFields->RawBatteryCapacity / 1000, "%",
             _batteryChargeInfoFields->VoltageAvg,
             (float)_batteryChargeInfoFields->BatteryAge / 1000, "%",
             _batteryChargeInfoFields->PowerRole,
