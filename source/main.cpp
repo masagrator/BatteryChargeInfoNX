@@ -105,7 +105,7 @@ void GetBatteryLoop(void*) {
             _batteryChargeInfoFields->BatteryTempMode, 
             (float)_batteryChargeInfoFields->BatteryTemperature / 1000, 
             (float)_batteryChargeInfoFields->RawBatteryCharge / 1000, "%",
-            _batteryChargeInfoFields->VoltageNow,
+            _batteryChargeInfoFields->VoltageAvg,
             (float)_batteryChargeInfoFields->BatteryAge / 1000, "%",
             _batteryChargeInfoFields->PowerRole,
             _batteryChargeInfoFields->ChargerType,
