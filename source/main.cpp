@@ -89,7 +89,7 @@ void GetBatteryLoop(void*) {
             "\nBattery Temperature State: %u" 
             "\nBattery Temperature: %.1f\u00B0C" 
             "\nRaw Battery Charge: %.1f%s" 
-            "\nVoltage Now: %u mV" 
+            "\nVoltage Avg: %u mV" 
             "\nBattery Age: %.1f%s" 
             "\nPower Role: %u" 
             "\nCharger Type: %u" 
