@@ -5,14 +5,15 @@
 ///*Notes BatteryTempMode
 //
 //    x == temperature
-//      temp range: state  voltage max               current  unk1
-//         x >= 60: 4      unk0 == 2 ? 4208 : 3952,   2048,   0
-//    51 >= x < 60: 3      unk0 == 2 ? 4208 : 3952,   2048,   unk0 != 2 ? 1 : 0
-//    17 >= x < 51: 2      4208,                      2048,   1
-//    4  >= x < 17: 1      4208,                      768,    1
-//          x <  4: 0      4208,                      768,    0
+//      temp range: state  voltage max               current  Enable Charging (?)
+//         x >= 60: 4      unk0 == 2 4208 : 3952,    2048,    0
+//    51 >= x < 60: 3      unk0 == 2 4208 : 3952,    2048,    unk0 != 2 1 : 0
+//    17 >= x < 51: 2      4208,                     2048,    1
+//    4  >= x < 17: 1      4208,                     768,     1
+//          x <  4: 0      4208,                     768,     0
 //
 //    if unk0 == 0 then current is set to 512.
+//    Guess for unk0: 0 - Docked, 1 - Handheld, 2 - Sleep
 //    unk1 is probably "Enable charging"
 //
 ///* Notes VoltageAvg
