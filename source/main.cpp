@@ -22,7 +22,7 @@
 
 typedef enum {
     Handheld        =    BIT(0),
-    unk_bit8        =    BIT(8),  //it can activate: when charger && at least one joy-con are plugged; charger is not plugged and then joy-con is pushed to rail, but not recognized by system yet
+    Rail            =    BIT(8),  //At least one Joy-con is charging from rail
     SPDSRC          =    BIT(12), //OTG
     ACC             =    BIT(16)  //Accessory
 } BatteryChargeInfoFieldsFlags;
