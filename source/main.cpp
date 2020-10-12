@@ -3,6 +3,7 @@
 #include <inttypes.h>
 
 ///*Notes BatteryTempMode
+//
 //    x == temperature
 //      temp range: state  voltage max               current unknown
 //         x >= 60: 4      unk0 == 2 ? 4208 : 3952,   2048,   0
@@ -12,13 +13,18 @@
 //          x <  4: 0      4208,                      768,    0
 //
 //    if unk0 == 0 then current is set to 512.
+//
+///* Notes VoltageAvg
+//
+//    Vavg time = 175.8ms x 2^(6+VOLT), default: VOLT = 2 (Vavg time = 45s)
+//
 ///End of Notes
 
 typedef enum {
     Handheld        =    BIT(0),
     unk_bit8        =    BIT(8),  //it can activate: when charger is plugged; when joy-con is pushed to rail, but not recognized by system yet; when being in dock with tv turned off
     SPDSRC          =    BIT(12),
-    ExternalDevice  =    BIT(16)
+    ACC             =    BIT(16)  //Accessory
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
@@ -50,7 +56,7 @@ typedef struct {
     int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
     int32_t BatteryTemperature;                         //Battery temperature in milli C
     int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
-    int32_t VoltageNow;                                 //Voltage now in mV
+    int32_t VoltageAvg;                                 //Voltage avg in mV (more in Notes)
     int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
