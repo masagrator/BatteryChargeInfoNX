@@ -23,7 +23,7 @@
 typedef enum {
     Handheld        =    BIT(0),
     unk_bit8        =    BIT(8),  //it can activate: when charger is plugged; when joy-con is pushed to rail, but not recognized by system yet; when being in dock with tv turned off
-    SPDSRC          =    BIT(12),
+    SPDSRC          =    BIT(12), //OTG
     ACC             =    BIT(16)  //Accessory
 } BatteryChargeInfoFieldsFlags;
 
