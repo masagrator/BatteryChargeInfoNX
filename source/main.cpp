@@ -21,7 +21,7 @@
 ///End of Notes
 
 typedef enum {
-    Handheld        =    BIT(0),
+    NoHub           =    BIT(0),  //If hub is disconnected
     Rail            =    BIT(8),  //At least one Joy-con is charging from rail
     SPDSRC          =    BIT(12), //OTG
     ACC             =    BIT(16)  //Accessory
