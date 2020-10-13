@@ -9,36 +9,36 @@
 ///End of Notes
 
 typedef enum {
-    NoHub           =    BIT(0),  //If hub is disconnected
-    Rail            =    BIT(8),  //At least one Joy-con is charging from rail
-    SPDSRC          =    BIT(12), //OTG
-    ACC             =    BIT(16)  //Accessory
+    NoHub  = BIT(0),  //If hub is disconnected
+    Rail   = BIT(8),  //At least one Joy-con is charging from rail
+    SPDSRC = BIT(12), //OTG
+    ACC    = BIT(16)  //Accessory
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
-    unkPDControllerState    =   0,
-    NewPDO                  =   1,
-    NoPD                    =   2,
-    AcceptedRDO             =   3,
+    unkPDControllerState = 0,
+    NewPDO               = 1, //Received new Power Data Object
+    NoPD                 = 2, //No Power Delivery source is detected
+    AcceptedRDO          = 3 //Received and accepted Request Data Object
 } BatteryChargeInfoFieldsPDControllerState; //BM92T series
 
 typedef enum {
-    None            =    0,
-    PD              =    1,
-    TypeC_1500mA    =    2,
-    TypeC_3000mA    =    3,
-    DCP             =    4,
-    CDP             =    5,
-    SDP             =    6,
-    Apple_500mA     =    7,
-    Apple_1000mA    =    8,
-    Apple_2000mA    =    9
+    None         = 0,
+    PD           = 1,
+    TypeC_1500mA = 2,
+    TypeC_3000mA = 3,
+    DCP          = 4,
+    CDP          = 5,
+    SDP          = 6,
+    Apple_500ma  = 7,
+    Apple_1000mA = 8,
+    Apple_2000mA = 9
 } BatteryChargeInfoFieldsChargerType;
 
 typedef enum {
-    UnkPowerRole    =    0,
-    Sink            =    1,
-    Source          =    2
+    unkPowerRole = 0,
+    Sink         = 1,
+    Source       = 2
 } BatteryChargeInfoFieldsPowerRole;
 
 typedef struct {
