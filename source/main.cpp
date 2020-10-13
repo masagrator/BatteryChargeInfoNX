@@ -62,14 +62,13 @@ Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoField
     return serviceDispatchOut(psmService, 17, *out);
 }
 
-BatteryChargeInfoFields* _batteryChargeInfoFields;
 bool threadexit = false;
 char Print_x[512];
 Thread t0;
 
 void GetBatteryLoop(void*) {
-    Service* psmService = psmGetServiceSession();
-    _batteryChargeInfoFields = new BatteryChargeInfoFields;
+    static Service* psmService = psmGetServiceSession();
+    static BatteryChargeInfoFields* _batteryChargeInfoFields = new BatteryChargeInfoFields;
     while (threadexit == false) {
         psmGetBatteryChargeInfoFields(psmService, _batteryChargeInfoFields);
         snprintf(Print_x, sizeof(Print_x), 
