@@ -42,8 +42,8 @@ typedef enum {
 typedef struct {
     int32_t InputCurrentLimit;                                  //Input current limit in mA
     int32_t VBUSCurrentLimit;                                   //VBUS current limit in mA
-    int32_t ChargeCurrentLimit;                                 //Battery Charging current limit in mA (changes to 512mA when Docked)
-    int32_t ChargeVoltageLimit;                                 //Battery Charging voltage limit in mV (changes to 3952mV when BatteryTemperature >= 51.0)
+    int32_t ChargeCurrentLimit;                                 //Battery Charging current limit in mA (512mA when Docked, 768mA when BatteryTemperature < 17.0 C)
+    int32_t ChargeVoltageLimit;                                 //Battery Charging voltage limit in mV (changes to 3952mV when BatteryTemperature >= 51.0 C)
     int32_t unk_x10;                                            //Possibly an emum, getting the same value as PowerRole in all tested cases
     int32_t unk_x14;                                            //Possibly flags
     BatteryChargeInfoFieldsPDControllerState PDControllerState; //Power Delivery Controller State
