@@ -19,7 +19,7 @@ typedef enum {
     unkPDControllerState = 0,
     NewPDO               = 1, //Received new Power Data Object
     NoPD                 = 2, //No Power Delivery source is detected
-    AcceptedRDO          = 3 //Received and accepted Request Data Object
+    AcceptedRDO          = 3  //Received and accepted Request Data Object
 } BatteryChargeInfoFieldsPDControllerState; //BM92T series
 
 typedef enum {
