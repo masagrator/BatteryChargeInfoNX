@@ -40,17 +40,17 @@ typedef enum {
 } BatteryChargeInfoFieldsPowerRole;
 
 typedef struct {
-    int32_t InputCurrentLimit;                                  //Input current limit in mA
-    int32_t VBUSCurrentLimit;                                   //VBUS current limit in mA
-    int32_t ChargeCurrentLimit;                                 //Battery Charging current limit in mA (512mA when Docked, 768mA when BatteryTemperature < 17.0 C)
-    int32_t ChargeVoltageLimit;                                 //Battery Charging voltage limit in mV (3952mV when BatteryTemperature >= 51.0 C)
+    int32_t InputCurrentLimit;                                  //Input (Sink) current limit in mA
+    int32_t VBUSCurrentLimit;                                   //Output (Source/VBUS/OTG) current limit in mA
+    int32_t ChargeCurrentLimit;                                 //Battery charging current limit in mA (512mA when Docked, 768mA when BatteryTemperature < 17.0 C)
+    int32_t ChargeVoltageLimit;                                 //Battery charging voltage limit in mV (3952mV when BatteryTemperature >= 51.0 C)
     int32_t unk_x10;                                            //Possibly an emum, getting the same value as PowerRole in all tested cases
     int32_t unk_x14;                                            //Possibly flags
     BatteryChargeInfoFieldsPDControllerState PDControllerState; //Power Delivery Controller State
     int32_t BatteryTemperature;                                 //Battery temperature in milli C
-    int32_t RawBatteryCharge;                                   //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t RawBatteryCharge;                                   //Raw battery charged capacity per cent-mille (i.e. 100% = 100000 pcm)
     int32_t VoltageAvg;                                         //Voltage avg in mV (more in Notes)
-    int32_t BatteryAge;                                         //Battery age per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t BatteryAge;                                         //Battery age (capacity full / capacity design) per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
     int32_t ChargerVoltageLimit;                                //Charger and external device voltage limit in mV
