@@ -29,7 +29,7 @@ typedef enum {
     DCP          = 4,
     CDP          = 5,
     SDP          = 6,
-    Apple_500ma  = 7,
+    Apple_500mA  = 7,
     Apple_1000mA = 8,
     Apple_2000mA = 9
 } BatteryChargeInfoFieldsChargerType;
