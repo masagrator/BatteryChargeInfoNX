@@ -16,7 +16,6 @@ typedef enum {
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
-    unkPDControllerState = 0,
     NewPDO               = 1, //Received new Power Data Object
     NoPD                 = 2, //No Power Delivery source is detected
     AcceptedRDO          = 3  //Received and accepted Request Data Object
@@ -36,7 +35,6 @@ typedef enum {
 } BatteryChargeInfoFieldsChargerType;
 
 typedef enum {
-    unkPowerRole = 0,
     Sink         = 1,
     Source       = 2
 } BatteryChargeInfoFieldsPowerRole;
