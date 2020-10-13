@@ -30,6 +30,13 @@ typedef enum {
 } BatteryChargeInfoFieldsFlags;
 
 typedef enum {
+    unkPDControllerState    =   0,
+    NewPDO                  =   1,
+    NoPD                    =   2,
+    AcceptedRDO             =   3,
+} BatteryChargeInfoFieldsPDControllerState; //BM92T series
+
+typedef enum {
     None            =    0,
     PD              =    1,
     TypeC_1500mA    =    2,
@@ -43,28 +50,28 @@ typedef enum {
 } BatteryChargeInfoFieldsChargerType;
 
 typedef enum {
-    Unknown         =    0,
+    UnkPowerRole    =    0,
     Sink            =    1,
     Source          =    2
 } BatteryChargeInfoFieldsPowerRole;
 
 typedef struct {
-    int32_t InputCurrentLimit;                          //Input current limit in mA
-    int32_t VBUSCurrentLimit;                           //VBUS current limit in mA
-    int32_t ChargeCurrentLimit;                         //Battery Charging current limit in mA
-    int32_t ChargeVoltageLimit;                         //Battery Charging voltage limit in mV
-    int32_t unk_x10;                                    //Possibly an emum, getting the same value as PowerRole in all tested cases
-    int32_t unk_x14;                                    //Possibly flags
-    int32_t BatteryTempMode;                            //Battery Temperature State (more in Notes)
-    int32_t BatteryTemperature;                         //Battery temperature in milli C
-    int32_t RawBatteryCharge;                           //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
-    int32_t VoltageAvg;                                 //Voltage avg in mV (more in Notes)
-    int32_t BatteryAge;                                 //Battery age per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t InputCurrentLimit;                                  //Input current limit in mA
+    int32_t VBUSCurrentLimit;                                   //VBUS current limit in mA
+    int32_t ChargeCurrentLimit;                                 //Battery Charging current limit in mA
+    int32_t ChargeVoltageLimit;                                 //Battery Charging voltage limit in mV
+    int32_t unk_x10;                                            //Possibly an emum, getting the same value as PowerRole in all tested cases
+    int32_t unk_x14;                                            //Possibly flags
+    BatteryChargeInfoFieldsPDControllerState PDControllerState; //Battery Temperature State (more in Notes)
+    int32_t BatteryTemperature;                                 //Battery temperature in milli C
+    int32_t RawBatteryCharge;                                   //Raw battery charge per cent-mille (i.e. 100% = 100000 pcm)
+    int32_t VoltageAvg;                                         //Voltage avg in mV (more in Notes)
+    int32_t BatteryAge;                                         //Battery age per cent-mille (i.e. 100% = 100000 pcm)
     BatteryChargeInfoFieldsPowerRole PowerRole;
     BatteryChargeInfoFieldsChargerType ChargerType;
-    int32_t ChargerVoltageLimit;                        //Charger and external device voltage limit in mV
-    int32_t ChargerCurrentLimit;                        //Charger and external device current limit in mA
-    BatteryChargeInfoFieldsFlags Flags;                 //Unknown flags
+    int32_t ChargerVoltageLimit;                                //Charger and external device voltage limit in mV
+    int32_t ChargerCurrentLimit;                                //Charger and external device current limit in mA
+    BatteryChargeInfoFieldsFlags Flags;                         //Unknown flags
 } BatteryChargeInfoFields;
 
 Result psmGetBatteryChargeInfoFields(Service* psmService, BatteryChargeInfoFields *out) {
@@ -88,7 +95,7 @@ void GetBatteryLoop(void*) {
             "\nBattery Charging Voltage Limit: %u mV" 
             "\nunk_x10: 0x%08" PRIx32 
             "\nunk_x14: 0x%08" PRIx32 
-            "\nBattery Temperature State: %u" 
+            "\nPD Controller State: %u" 
             "\nBattery Temperature: %.1f\u00B0C" 
             "\nRaw Battery Charge: %.1f%s" 
             "\nVoltage Avg: %u mV" 
@@ -104,7 +111,7 @@ void GetBatteryLoop(void*) {
             _batteryChargeInfoFields->ChargeVoltageLimit, 
             _batteryChargeInfoFields->unk_x10,
             _batteryChargeInfoFields->unk_x14, 
-            _batteryChargeInfoFields->BatteryTempMode, 
+            _batteryChargeInfoFields->PDControllerState, 
             (float)_batteryChargeInfoFields->BatteryTemperature / 1000, 
             (float)_batteryChargeInfoFields->RawBatteryCharge / 1000, "%",
             _batteryChargeInfoFields->VoltageAvg,
